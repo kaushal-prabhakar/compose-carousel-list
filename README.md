@@ -30,8 +30,15 @@ This is a simple Jetpack Compose-based Android app featuring a RecyclerView with
 
 ## Future Enhancements ## 
 
+#### Improved and beautified UI ####
 #### Responsive Design – Supports screen rotations while maintaining state. ####
 #### Add dynamic data fetching from an API. ####
 #### Improve carousel animations and UI effects. ####
 #### Implement dark mode support. ####
+
+## Screenshots ##
+
+![WhatsApp Image 2025-02-25 at 5 40 37 PM (1)](https://github.com/user-attachments/assets/859b49d1-90ab-4375-af7a-08555aad17d0)
+![WhatsApp Image 2025-02-25 at 5 40 37 PM](https://github.com/user-attachments/assets/366b1917-d830-4f50-b113-cf2bbad2f943)
+
 
