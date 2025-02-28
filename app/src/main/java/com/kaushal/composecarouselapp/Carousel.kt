@@ -2,7 +2,7 @@ package com.kaushal.composecarouselapp
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -36,30 +36,20 @@ import androidx.compose.ui.unit.sp
 fun Carousel(
     items: List<CarouselItem>,
     currentIndex: Int,
-    onNextClicked : (Boolean) -> Unit,
-    onPreviousClicked : (Boolean) -> Unit
+    onNextClicked: (Boolean) -> Unit,
+    onPreviousClicked: (Boolean) -> Unit
 ) {
 
     // Carousel UI with back/forward navigation buttons
-    Row(
+    Box(
         modifier = Modifier
-            .fillMaxWidth().padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center,
+            .fillMaxWidth()
+            .padding(8.dp)
     ) {
-
-        // back arrow button
-        IconButton(modifier = Modifier.background(shape = CircleShape, color = Color.Gray), onClick = {
-            onPreviousClicked(false)
-        }) {
-            Icon(Icons.Default.ArrowBack, contentDescription = null)
-        }
 
         // current carousel item with Image and text
         Card(
             modifier = Modifier
-                .weight(10f)
-                .padding(8.dp)
                 .height(200.dp),
             elevation = 4.dp
         ) {
@@ -69,10 +59,25 @@ fun Carousel(
             }
         }
 
+        // back arrow button
+        IconButton(
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .background(shape = CircleShape, color = Color.White.copy(alpha = 0.5f)),
+            onClick = {
+                onPreviousClicked(false)
+            }) {
+            Icon(Icons.Default.ArrowBack, contentDescription = null)
+        }
+
         // forward arrow button
-        IconButton(modifier = Modifier.background(shape = CircleShape, color = Color.Gray), onClick = {
-            onNextClicked(false)
-        }) {
+        IconButton(
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .background(shape = CircleShape, color = Color.Gray.copy(alpha = 0.2f)),
+            onClick = {
+                onNextClicked(false)
+            }) {
             Icon(Icons.Default.ArrowForward, contentDescription = null)
         }
     }
@@ -87,6 +92,7 @@ fun CarouselItem(item: CarouselItem) {
         // Carousel Image
         Image(
             modifier = Modifier
+                .padding(8.dp)
                 .size(200.dp)
                 .clip(RoundedCornerShape(4.dp)),
             painter = painterResource(id = item.imageResId),
@@ -94,9 +100,11 @@ fun CarouselItem(item: CarouselItem) {
             contentScale = ContentScale.Crop
         )
         Spacer(modifier = Modifier.width(4.dp)) // space between Image and text in the carousel
-        Column(modifier = Modifier.weight(1f)) {
+        Column(modifier = Modifier.weight(1f).align(Alignment.Top)) {
             Text(
-                text = item.text, fontSize = 12.sp, fontWeight = FontWeight.Bold,
+                text = item.text,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .weight(1f)
                     .padding(8.dp)
