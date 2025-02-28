@@ -19,7 +19,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.util.fastCbrt
 
 @Composable
 fun AppContent(viewModel: MainActivityViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
@@ -46,8 +45,14 @@ fun AppContent(viewModel: MainActivityViewModel = androidx.lifecycle.viewmodel.c
                 Carousel(
                     items = DataRepository.getCarouselItem(),
                     currentIndex = viewModel.currentCarouselIndex,
-                    onNextClicked = { viewModel.updateNextItem(false) },
-                    onPreviousClicked = { viewModel.updatePreviousItem(false) }
+                    onNextClicked = {
+                        viewModel.updateNextItem()
+                        viewModel.updateAutoScrollEnabled(false)
+                    },
+                    onPreviousClicked = {
+                        viewModel.updatePreviousItem()
+                        viewModel.updateAutoScrollEnabled(false)
+                    }
                 )
             }
 
