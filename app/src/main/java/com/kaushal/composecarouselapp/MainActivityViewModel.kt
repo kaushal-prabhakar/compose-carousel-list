@@ -48,7 +48,7 @@ class MainActivityViewModel : ViewModel() {
         println("AutoScroll updated to: $enabled")
         autoScrollEnabled = enabled
         if(enabled) {
-            if(autoScrollJob?.isActive == false) startAutoScroll()
+            startAutoScroll()
         } else stopAutoScroll()
     }
 
